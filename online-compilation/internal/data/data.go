@@ -8,7 +8,7 @@ import (
 )
 
 // ProviderSet is data providers.
-var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewNoteRepo)
+var ProviderSet = wire.NewSet(NewData, NewGreeterRepo, NewNoteRepo) //注入位置
 
 // Data .
 type Data struct {
@@ -17,6 +17,7 @@ type Data struct {
 }
 
 // NewData .
+// 这里就是建立数据库连接，你可以用本地测试一下，把想这些注释放开就行
 func NewData(c *conf.Data, logger log.Logger) (*Data, func(), error) {
 	//db, err := gorm.Open(mysql.Open(c.Database.Source), &gorm.Config{})
 	//if err != nil {

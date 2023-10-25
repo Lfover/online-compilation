@@ -2,6 +2,7 @@ package model
 
 import "time"
 
+// 类似于这个，你就可以在数据库里面创建这个表
 type NoteDetail struct {
 	ID        int       `gorm:"column:id" db:"id" json:"id" form:"id"`                                 //  主键id
 	Title     string    `gorm:"column:title" db:"title" json:"title" form:"title"`                     //  笔记标题
