@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package api.note;
+import "google/api/annotations.proto";
+option go_package = "online-compilation/api/note;note";
+option java_multiple_files = true;
+option java_package = "api.note";
+
+service Note {
+	//创建笔记
+	rpc CreateNote (CreateNoteRequest) returns (CreateNoteReply){
+		option (google.api.http) = {
+			post: "/api/note/create"
+			body:"*"
+		};
+	};
+	//更新笔记
+	rpc UpdateNote (UpdateNoteRequest) returns (UpdateNoteReply){
+		option (google.api.http) = {
+			post: "/api/note/update"
+			body:"*"
+		};
+	};
+	//删除笔记
+	rpc DeleteNote (DeleteNoteRequest) returns (DeleteNoteReply){
+		option (google.api.http) = {
+			post: "/api/note/delete"
+			body:"*"
+		};
+	};
+	//获取笔记详情
+	rpc GetNote (GetNoteRequest) returns (GetNoteReply){
+		option (google.api.http) = {
+			get: "/api/note/get/note"
+		};
+	};
+	//获取笔记列表
+	rpc ListNote (ListNoteRequest) returns (ListNoteReply){
+		option (google.api.http) = {
+			get: "/api/note/note/list"
+		};
+	};
+	//获取代码详情
+	rpc CodeInfo (CodeInfoRequest) returns (CodeInfoReply){
+		option (google.api.http) = {
+			get: "/api/code/info"
+		};
+	};
+	//下载笔记
+		rpc NoteDownload (NoteDownloadRequest) returns (NoteDownloadReply) {
+			option (google.api.http) = {
+				get: "/v1/note/download"
+			};
+		}
+		//编译代码
+	rpc CodeCompile (CodeCompileRequest) returns (CodeCompileReply) {
+		option (google.api.http) = {
+			get: "/v1/code/compile"
+		};
+	}
+}
+
+message CreateNoteRequest {
+	string title = 1;//文章标题
+	string note = 2;//笔记内容
+	string code = 3;//代码
+	string type = 4;//语言
+	string result = 5;//代码运行结果
+}
+message CreateNoteReply {}
+
+message UpdateNoteRequest {
+	string title = 1;//文章标题
+	string note = 2;//笔记内容
+	string code = 3;//代码
+	string type = 4;//语言
+}
+message UpdateNoteReply {}
+
+message DeleteNoteRequest {
+	int32 noteId = 1;
+}
+message DeleteNoteReply {}
+
+message GetNoteRequest {
+	int32 noteId = 1;
+}
+message GetNoteReply {
+	string title = 1;//文章标题
+	string note = 2;//笔记内容
+	string code = 3;//代码
+	string type = 4;//语言
+	string result = 5;//代码运行结果
+}
+
+message ListNoteRequest {}
+message ListNoteReply {
+	repeated GetNoteReply note_list = 1;
+}
+
+message CodeInfoRequest{}
+message CodeInfoReply{}
+
+message NoteDownloadRequest{
+
+}
+message NoteDownloadReply{}
+
+message CodeCompileRequest{}
+message CodeCompileReply{}

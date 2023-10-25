@@ -1,0 +1,235 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+    title: ""
+    version: 0.0.1
+paths:
+    /api/code/info:
+        get:
+            tags:
+                - Note
+            description: 获取代码详情
+            operationId: Note_CodeInfo
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.CodeInfoReply'
+    /api/note/create:
+        post:
+            tags:
+                - Note
+            description: 创建笔记
+            operationId: Note_CreateNote
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.note.CreateNoteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.CreateNoteReply'
+    /api/note/delete:
+        post:
+            tags:
+                - Note
+            description: 删除笔记
+            operationId: Note_DeleteNote
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.note.DeleteNoteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.DeleteNoteReply'
+    /api/note/get/note:
+        get:
+            tags:
+                - Note
+            description: 获取笔记详情
+            operationId: Note_GetNote
+            parameters:
+                - name: noteId
+                  in: query
+                  schema:
+                    type: integer
+                    format: int32
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.GetNoteReply'
+    /api/note/note/list:
+        get:
+            tags:
+                - Note
+            description: 获取笔记列表
+            operationId: Note_ListNote
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.ListNoteReply'
+    /api/note/update:
+        post:
+            tags:
+                - Note
+            description: 更新笔记
+            operationId: Note_UpdateNote
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/api.note.UpdateNoteRequest'
+                required: true
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.UpdateNoteReply'
+    /helloworld/{name}:
+        get:
+            tags:
+                - Greeter
+            description: Sends a greeting
+            operationId: Greeter_SayHello
+            parameters:
+                - name: name
+                  in: path
+                  required: true
+                  schema:
+                    type: string
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/helloworld.v1.HelloReply'
+    /v1/code/compile:
+        get:
+            tags:
+                - Note
+            description: 编译代码
+            operationId: Note_CodeCompile
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.CodeCompileReply'
+    /v1/note/download:
+        get:
+            tags:
+                - Note
+            description: 下载笔记
+            operationId: Note_NoteDownload
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/api.note.NoteDownloadReply'
+components:
+    schemas:
+        api.note.CodeCompileReply:
+            type: object
+            properties: {}
+        api.note.CodeInfoReply:
+            type: object
+            properties: {}
+        api.note.CreateNoteReply:
+            type: object
+            properties: {}
+        api.note.CreateNoteRequest:
+            type: object
+            properties:
+                title:
+                    type: string
+                note:
+                    type: string
+                code:
+                    type: string
+                type:
+                    type: string
+                result:
+                    type: string
+        api.note.DeleteNoteReply:
+            type: object
+            properties: {}
+        api.note.DeleteNoteRequest:
+            type: object
+            properties:
+                noteId:
+                    type: integer
+                    format: int32
+        api.note.GetNoteReply:
+            type: object
+            properties:
+                title:
+                    type: string
+                note:
+                    type: string
+                code:
+                    type: string
+                type:
+                    type: string
+                result:
+                    type: string
+        api.note.ListNoteReply:
+            type: object
+            properties:
+                noteList:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/api.note.GetNoteReply'
+        api.note.NoteDownloadReply:
+            type: object
+            properties: {}
+        api.note.UpdateNoteReply:
+            type: object
+            properties: {}
+        api.note.UpdateNoteRequest:
+            type: object
+            properties:
+                title:
+                    type: string
+                note:
+                    type: string
+                code:
+                    type: string
+                type:
+                    type: string
+        helloworld.v1.HelloReply:
+            type: object
+            properties:
+                message:
+                    type: string
+            description: The response message containing the greetings
+tags:
+    - name: Greeter
+      description: The greeting service definition.
+    - name: Note
